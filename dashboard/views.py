@@ -45,7 +45,7 @@ print(Urls)
 for i in range(len(Urls)):
     req = urllib.request.urlopen(Urls[i])
     arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
-    img = cv2.imdecode(arr, -1)  # 'Load it as it is'
+    img = cv2.imdecode(arr, -1) 
     images.append(img)
     classNames.append(Name[i])
 
