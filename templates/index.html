@@ -1,18 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-	<title>Covid Statistics</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Firebase Image Upload in Javascript</title>
+  </head>
+  <body>
+    <input type="file" id="photo" />
+    <img id='image'/>
+    <button onclick="uploadImage()">Upload Image</button>
     
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-     <meta name="description" content="">
-     <meta name="keywords" content="">
-     <meta name="team" content="">
-     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  </body>
+  
 
- </head>
- <body> Hi , Welcome to the Site</body>
- </html>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-storage.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBPIKFXn4O_qI1pc-7rVMycCaLeQMExEdY",
+    authDomain: "face-recognition-b0288.firebaseapp.com",
+    databaseURL: "https://face-recognition-b0288-default-rtdb.firebaseio.com",
+    projectId: "face-recognition-b0288",
+    storageBucket: "face-recognition-b0288.appspot.com",
+    messagingSenderId: "847428386504",
+    appId: "1:847428386504:web:196356bde96d79eb40affd",
+    measurementId: "G-BN1QD24DGP"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  console.log(firebase);
+
+    function uploadImage() {
+      const ref = firebase.storage().ref();
+      const file = document.querySelector("#photo").files[0];
+      const name = +new Date() + "-" + file.name;
+      const metadata = {
+        contentType: file.type
+      };
+      const task = ref.child(name).put(file, metadata);
+      task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+          console.log(url);
+          const image = document.querySelector("#image")
+          image.src = url
+        })
+    }
+
+
+</script>
+</html>
+
 
 

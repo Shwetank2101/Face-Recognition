@@ -41,7 +41,7 @@ Name=list(user.keys())
 Urls=list(user.values())
 images=[] # containing matrix
 classNames=[]
-print(Urls)
+# print(Urls)
 for i in range(len(Urls)):
     req = urllib.request.urlopen(Urls[i])
     arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
@@ -104,3 +104,6 @@ def index(request):
                         print(name)
                         s=s+''+name
         return HttpResponse(s)
+
+def upload(request):
+    return render(request,'index.html')

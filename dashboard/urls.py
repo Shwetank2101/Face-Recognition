@@ -5,5 +5,5 @@ from django.conf.urls import url
 
 urlpatterns = [
 	url('^$',views.index,name='Homepage'),
-    # path('face',views.make, name='make')
+    path('upload',views.upload, name='upload_image')
 ]
